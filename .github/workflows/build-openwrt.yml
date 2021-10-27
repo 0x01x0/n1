@@ -60,6 +60,11 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        
+    - name: install-program
+      run: |
+        df -hT $PWD
+        git clone https://github.com/tuanqing/install-program openwrt/package/install-program
 
     - name: Load custom feeds
       run: |
@@ -88,11 +93,6 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        
-    - name: install-program
-      run: |
-        df -hT $PWD
-        git clone https://github.com/tuanqing/install-program openwrt/package/install-program
 
     - name: Download package
       id: package
